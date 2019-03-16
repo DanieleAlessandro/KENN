@@ -10,8 +10,22 @@ import tensorflow as tf
 def read_knowledge_base(file_name, initial_clause_weight=0.5):
     """Initialize the knowledge base.
 
-    :param file_name: the path of the knowledge base file
-    :param initial_clause_weight: the initial value to the clause weight. Used if the clause weight is learned
+    :param file_name: the path of the knowledge base file. The file must contain:
+        - a row with the list of predicates
+        - a set of constraints. Each constraint is on the form:
+        clause_weight:clause
+
+        The clause_weight should be either a real number (in such a case this value is fixed) or an underscore
+        (in this case the weight will be a tensorflow variable and learned during training).
+
+        The clause must be represented as a list of literals separated by commas (that represent disjunctions).
+        Negation must specified by adding the letter 'n' before the predicate name.
+
+        An example:
+           _:nDog,Animal
+
+    :param initial_clause_weight: the initial value to the clause weights. Used for the clause precedeed by an
+        underscore
     :return: the lists of clauses in the knowledge base
     """
     with open(file_name, 'r') as kb_file:

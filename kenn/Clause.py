@@ -2,14 +2,11 @@
 
 import tensorflow as tf
 import numpy as np
+from delta_functions.softmax import softmax
 
 # ==================
 # Enhancer functions
 # ==================
-
-
-def softmax(tensor):
-    return tf.nn.softmax(tensor)
 
 
 class Clause:
@@ -98,7 +95,7 @@ class Clause:
 
         :param tensor: the tensor containing predicates' pre-activation values for many entities
         :param enhancer_function: the function that return delta values starting from pre-activations
-        :return: delta vector to be summed to the original pre-activation tensor to obtain the higher satisfaction of
+        :return: delta vector to be summed to the original pre-activation tensor to obtain the higher satisfaction of \
         the clause"""
         with tf.name_scope(self.string + '_enhancer'):
             clause_matrix = self.grounded_clause(tensor)
