@@ -1,5 +1,5 @@
 # KENN: Knowledge Enhanced Neural Networks
-KENN (Knowledge Enhanced Neural Networks) is a library for python 2.7 built on top of TensorFlow that permit to enhance neural networks models with logical constraints. It does so by adding a new final layer, called **Knowledge Enhancer (KE)**, to the existing neural network. The KE change the orginal predictions of the standard neural network enforcing the satisfaction of the constraints. Additionally, it contains **clause weights**, learnable parameters associated to the constraints that represent their strength. 
+KENN (Knowledge Enhanced Neural Networks) is a library for python 2.7 built on top of TensorFlow that permit to enhance neural networks models with logical constraints (clauses). It does so by adding a new final layer, called **Knowledge Enhancer (KE)**, to the existing neural network. The KE change the orginal predictions of the standard neural network enforcing the satisfaction of the constraints. Additionally, it contains **clause weights**, learnable parameters associated to the constraints that represent their strength. 
 
 ## Installation
 KENN can be installed using pip:
@@ -54,6 +54,43 @@ with tf.Session(config=config) as sess:
 # Evaluations and standard operations ...
 ```
 
+### Example explained
+In the previous example, we applies 5 changes to the standard TensorFlow code. Following, the details.
+
+#### Import knowledge_base module
+The first change is trivial, we need to import the library:
+```python
+from kenn import Knowledge_base as kb
+```
+
+#### Read the knowledge base file
+```python
+clauses = kb.read_knowledge_base(kb_file_name)
+```
+
+The `read_knowledge_base` function takes as input the path of the file containing the logical constraints. Following, an example of knowledge base file:
+
+```
+Dog,Cat,Animal,Car,Truck,Chair
+
+nDog,Animal
+nCat,Animal
+nDog,nCat
+nCar,Animal
+nAnimal,Dog,Cat
+```
+
+The first row contains a list of predicates separated with a comma with no spaces. Each predicate must start with a capital letter.
+The second row must be empty.
+Other rows contain the clauses.
+
+Each clause is in a separate row and must be written resepcting this properties:
+1. logical disjunctions are represented with commas
+1. if a literal is negated, it must be precedeed by the lowercase 'n'
+1. they must contain only predicates specified in the first row
+1. there shouldn't be spaces
+
+For example, the third line represents the clause <a href="https://www.codecogs.com/eqnedit.php?latex=\lnot&space;Dog&space;\lor&space;Animal" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\lnot&space;Dog&space;\lor&space;Animal" title="\lnot Dog \lor Animal" /></a> and tells us that a dog should also be an animal. A more interesting clause is the last one, that tells us that in our domain only cats and dogs are animals.
 
 ## Knowledge Base file format
 
