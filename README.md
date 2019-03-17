@@ -120,7 +120,6 @@ _ = sess.run(train_step)
 sess.run(clauses_clip_ops)
 ```
 
-## API documentation
 
 ## License
 Copyright (c) 2019, Daniele Alessandro, Serafini Luciano
