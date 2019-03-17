@@ -4,10 +4,6 @@ import tensorflow as tf
 import numpy as np
 from delta_functions import softmax
 
-# ==================
-# Enhancer functions
-# ==================
-
 
 class Clause:
     """Represent a clause in CNF.
