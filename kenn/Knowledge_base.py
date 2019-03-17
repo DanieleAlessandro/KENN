@@ -56,14 +56,14 @@ def knowledge_enhancer(tensor, clauses):
     """Improve the satisfaction level of a set of clauses.
 
     :param tensor: the tensor containing predicates' pre-activation values for many entities
-    :return: final predictions"""
+    :return: tuple (preactivation, final predictions)"""
     deltas = []
     for clause in clauses:
         deltas.append(clause.clause_enhancer(tensor))
 
     final_deltas = tf.transpose(tf.add_n(deltas))
 
-    return tf.nn.sigmoid(tensor + final_deltas)
+    return tensor + final_deltas, tf.nn.sigmoid(tensor + final_deltas)
 
 
 def kb_to_string(sess, clauses):
