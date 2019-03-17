@@ -2,7 +2,7 @@
 
 import tensorflow as tf
 import numpy as np
-from delta_functions.softmax import softmax
+from delta_functions import softmax
 
 # ==================
 # Enhancer functions
