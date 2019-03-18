@@ -73,11 +73,11 @@ The `read_knowledge_base` function takes as input the path of the file containin
 ```
 Dog,Cat,Animal,Car,Truck,Chair
 
-nDog,Animal
-nCat,Animal
-nDog,nCat
-nCar,Animal
-nAnimal,Dog,Cat
+1.5:nDog,Animal
+_:nCat,Animal
+2.0:nDog,nCat
+_:nCar,Animal
+_:nAnimal,Dog,Cat
 ```
 
 The first row contains a list of predicates separated with a comma with no spaces. Each predicate must start with a capital letter.
@@ -90,7 +90,9 @@ Each clause is in a separate row and must be written respecting this properties:
 1. they must contain only predicates specified in the first row
 1. there shouldn't be spaces
 
-For example, the third line represents the clause <a href="https://www.codecogs.com/eqnedit.php?latex=\lnot&space;Dog&space;\lor&space;Animal" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\lnot&space;Dog&space;\lor&space;Animal" title="\lnot Dog \lor Animal" /></a> and tells us that a dog should also be an animal. A more interesting clause is the last one, that tells us that in our domain only cats and dogs are animals.
+Additionally, each clause must be precedeed by a positive weight that represents the strength of the clause. More precisly, the weight could be a numeric value or an underscore: in the first case, the weight is fixed and determined by the specfied value, in the second case the weight is learned during training.
+
+For example, the third line represents the clause <a href="https://www.codecogs.com/eqnedit.php?latex=\lnot&space;Dog&space;\lor&space;Animal" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\lnot&space;Dog&space;\lor&space;Animal" title="\lnot Dog \lor Animal" /></a> and tells us that a dog should also be an animal. In this case, the clause weigth is fixed to the value 1.5. A more interesting clause is the last one, that tells us that in our domain only cats and dogs are animals. Moreover, the corresponding weight is learned and if the constraint is not satisfied in the training set, KENN learn to ignore it.
 
 #### 3. Knowledge Enhancer (KE)
 This is the most relevant change. Usually, in the last layer of a neural network, we apply an activation function to the preactivations calculated by previous layer.
@@ -120,6 +122,7 @@ _ = sess.run(train_step)
 sess.run(clauses_clip_ops)
 ```
 
+####
 
 ## License
 Copyright (c) 2019, Daniele Alessandro, Serafini Luciano
