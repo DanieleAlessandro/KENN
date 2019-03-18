@@ -46,12 +46,19 @@ clauses_clip_ops = kb.clip_weigths(clauses)
 with tf.Session(config=config) as sess:
     sess.run(tf.global_variables_initializer())
     
-    _ = sess.run(train_step)
-    
-    # *** 5 ***
-    sess.run(clauses_clip_ops)
+    for _ in range(number_of_steps):
+        sess.run(train_step)
 
-# Evaluations and standard operations ...
+        # *** 5 ***
+        sess.run(clauses_clip_ops)
+
+    # Evaluations and standard operations ...
+        
+    # *** 6 (optional) ***
+    learned_kb = kb.kb_to_string(sess, clauses)
+    
+    with open(kb_output_file, 'w') as kb_file:
+        kb_file.writelines(learned_kb)
 ```
 
 ### Example explained
@@ -122,7 +129,29 @@ _ = sess.run(train_step)
 sess.run(clauses_clip_ops)
 ```
 
-####
+#### 6. Saving learned clauses weigths
+Optionally, by calling ```kb_to_string``` function, it is possible to obtain a string containing the clauses with the learned weights and storing it into a file.
+
+```python
+# *** 6 (optional) ***
+learned_kb = kb.kb_to_string(sess, clauses)
+
+with open(kb_output_file, 'w') as kb_file:
+    kb_file.writelines(learned_kb)
+```
+
+The content of the string will be something like this:
+```
+1.5:nDog,Animal
+1.301:nCat,Animal
+2.0:nDog,nCat
+3.02:nCar,Animal
+0.0:nAnimal,Dog,Cat
+```
+
+As you can see, these are the same clauses given as input through the knowledge base file (see 2.) with the only difference that the underscores are sustituted by actual numbers, that are the learned clause weights. For instance, in this example the method learned that the last constraint shouldn't be taken in consideration by KENN.
+
+**NB:** notice that writing this last piece of code is not mandatory, but reading the leraned clause weights could be help the user to better understand the importance of each clause in the final predictions made by KENN, increasing in this way the interpretability.
 
 ## License
 Copyright (c) 2019, Daniele Alessandro, Serafini Luciano
