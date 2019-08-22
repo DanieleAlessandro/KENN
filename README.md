@@ -151,7 +151,7 @@ The content of the string will be something like this:
 
 As you can see, these are the same clauses given as input through the knowledge base file (see 2.) with the only difference that the underscores are sustituted by actual numbers, that are the learned clause weights. For instance, in this example the method learned that the last constraint shouldn't be taken in consideration by KENN.
 
-**NB:** notice that writing this last piece of code is not mandatory, but reading the leraned clause weights could be help the user to better understand the importance of each clause in the final predictions made by KENN, increasing in this way the interpretability.
+**NB:** notice that writing this last piece of code is not mandatory, but reading the learned clause weights could help the user to better understand the importance of each clause in the final predictions made by KENN, increasing in this way the interpretability.
 
 ## License
 Copyright (c) 2019, Daniele Alessandro, Serafini Luciano
