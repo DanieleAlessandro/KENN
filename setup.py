@@ -7,6 +7,13 @@ setup(name='kenn',
       version='1.0',
       license='bsd-3-clause',
       description='Knowledge Enhanced Neural Networks',
+      long_description='KENN (Knowledge Enhanced Neural Networks) is a library for python 2.7 built on top of '
+                 'TensorFlow which permits to enhance neural networks models with logical constraints (clauses). '
+                 'It does so by adding a new final layer, called Knowledge Enhancer (KE), '
+                 'to the existing neural network. The KE change the orginal predictions of the standard '
+                 'neural network enforcing the satisfaction of the constraints. '
+                 'Additionally, it contains clause weights, learnable parameters associated to the constraints '
+                 'that represent their strength.',
       author='Alessandro Daniele, Luciano Serafini',
       author_email='daniele@fbk.eu, serafini@fbk.eu',
       url='https://github.com/DanieleAlessandro/KENN',
