@@ -17,7 +17,6 @@ year="2019",
 publisher="Springer International Publishing",
 address="Cham",
 pages="542--554",
-abstract="We propose Knowledge Enhanced Neural Networks (KENN), an architecture for injecting prior knowledge, codified by a set of logical clauses, into a neural network.",
 isbn="978-3-030-29908-8"
 }
 ```
