@@ -1,5 +1,26 @@
 # KENN: Knowledge Enhanced Neural Networks
-KENN (Knowledge Enhanced Neural Networks) is a library for python 2.7 built on top of TensorFlow that permit to enhance neural networks models with logical constraints (clauses). It does so by adding a new final layer, called **Knowledge Enhancer (KE)**, to the existing neural network. The KE change the orginal predictions of the standard neural network enforcing the satisfaction of the constraints. Additionally, it contains **clause weights**, learnable parameters associated to the constraints that represent their strength. 
+KENN (Knowledge Enhanced Neural Networks) is a library for python 2.7 built on top of TensorFlow that permit to enhance neural networks models with logical constraints (clauses). It does so by adding a new final layer, called **Knowledge Enhancer (KE)**, to the existing neural network. The KE change the orginal predictions of the standard neural network enforcing the satisfaction of the constraints. Additionally, it contains **clause weights**, learnable parameters which represent the strength of the constraints.
+
+This is an implementation of the model presented in our paper:
+[Knowledge Enhanced Neural Networks](https://link.springer.com/chapter/10.1007/978-3-030-29908-8_43).
+
+If you use this software for academic research, please, cite our work using the following BibTeX:
+```
+@InProceedings{10.1007/978-3-030-29908-8_43,
+author="Daniele, Alessandro
+and Serafini, Luciano",
+editor="Nayak, Abhaya C.
+and Sharma, Alok",
+title="Knowledge Enhanced Neural Networks",
+booktitle="PRICAI 2019: Trends in Artificial Intelligence",
+year="2019",
+publisher="Springer International Publishing",
+address="Cham",
+pages="542--554",
+abstract="We propose Knowledge Enhanced Neural Networks (KENN), an architecture for injecting prior knowledge, codified by a set of logical clauses, into a neural network.",
+isbn="978-3-030-29908-8"
+}
+```
 
 ## Installation
 KENN can be installed using pip:
