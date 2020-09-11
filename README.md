@@ -21,6 +21,8 @@ isbn="978-3-030-29908-8"
 }
 ```
 
+**NB:** a [new version of KENN](https://github.com/DanieleAlessandro/KENN2) based on TensorFlow 2 has been also released and it implements additional features to work with relational domains.
+
 ## Installation
 KENN can be installed using pip:
 ```
